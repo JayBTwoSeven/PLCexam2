@@ -1,0 +1,73 @@
+(Grammar for Exam2 lang -- romaji-based Japanese language utilizing Java-adj structure)
+
+========================================================================================================
+RECURSIVE DECENT ALGORITHM FOR EXAM 2
+========================================================================================================
+
+EBNF ---------------------------------------------------------------------------------------------------
+
+
+S = <start>
+
+V = { <start>, <st8mnt>, <ifstmnt>, <forlp>, <whllp>, <swtch>, <swtchst>, <exprs>,
+	<boolexprs>, <var>, <id>, <val>, <assert>, <type>, <eqvlnce>, <term>
+	}
+
+∑ = { hajime, tame_ni, tsutsu, mata, sentaku, keikaku, joutai, ko, chuu, dai, koudai, 
+  (, ), {, }, [, ], =, <, >, <=, >=, ==, !=, +, -, *, /, %, [0-9], [A-Za-z_] , $, @ 
+
+R = [
+
+		<start>         --> keikaku ( <st8mnt> )
+		
+		<st8mnt>        --> <forlp><st8mnt> | <whllp><st8mnt> | <var><st8mnt> |
+							<ifstmnt><st8mnt> | <swtch><swtchst> | <assert><st8mnt> |
+							ε
+
+    <forlp>         --> tame_ni (<type> <assert>; <boolexprs>; <exprs>) <st8mnt> $
+
+    <whllp>         --> tsutsu (<boolexprs>) <st8mnt> $
+
+		<swtch>         --> sentaku(<id>) <swtchst> $
+
+		<swtchst>       --> joutai <val> : <st8mnt> |ε
+
+		<ifstmnt>       --> moshimo (<boolexprs>) <st8mnt> mata <st8mnt> @ 
+							| moshimo (<boolexprs>) <st8mnt> @
+
+		<var>           --> <type> <id> ; | <type> <id> = <exprs> ; 
+		
+		<assert>        --> <var> = <exprs> ; | <id> = <exprs> ;		
+
+    <id>            --> <alpha> <id> | _<id> | ε
+
+		<alpha>         --> a | b | c | ... | z | A | B | C | ... | Z 
+		
+		<type>          --> ko | chuu | dai | koudai
+
+		<exprs>         --> <term> + <exprs> | <term> - <exprs> | <term> * <exprs> | 
+							<term> / <exprs> | <term> % <exprs> | <term> = <exprs> | 
+							(<exprs>) | <term>
+
+		<term>          --> <id> | <val>
+
+		<val>           --> 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9
+
+
+		<boolexprs>     --> <id> <eqvlnce> <exprs>		
+
+    <eqvlnce>       --> < | <= | == | > | >= | !=
+
+Precedence operations ----------------------------------------------------------------------------------
+
+E -> E - T
+E -> E + T
+E -> T
+T -> T / F
+T -> T * F
+T -> F
+F -> +F
+F -> -F
+F -> (E)
+F -> a
+
