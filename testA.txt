@@ -1,0 +1,14 @@
+// performs basic math ops on type chuu (int) vars. If three is greater than four,
+    multiplies three and one. If three is not greater than four but greater than one, two
+    increases by 15.
+
+keikaku(
+  chuu one = 35;
+  chuu two = 40;
+  chuu three = 45;
+  chuu four = 50;
+  moshimo (three > four) 
+    three * one 
+  mata (three > one) 
+    two + 15 @
+)

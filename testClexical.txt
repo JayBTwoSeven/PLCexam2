@@ -1,0 +1,17 @@
+keisatsu(
+  ko size = 278;
+  chuu 5state = 0;
+
+  sentaku (dimension) 
+    joutai 30: 
+      state = 25;
+    choudai 35:
+      state = 20;
+    joutai 40:
+      state = 15;
+    $
+
+  moshimo (state = 15) size = 20$2 @
+
+  chuu ans = state * size; !
+)

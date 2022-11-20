@@ -1,0 +1,12 @@
+keikaku (
+
+  tsutsu (a = 13) a = a + 1 $
+  ko a;
+  ko fifteen = 15;
+  ko b = fifteen;
+  chuu fail = "13";
+  tame_ni (chuu i=15; i >= a; i = i+1)
+    ko c = ca+1;
+    d = c*a;
+    chuu d = 5
+)

@@ -1,0 +1,8 @@
+//uses a for loop to find the factorial of the upTo variable
+
+keikaku (
+  chuu fact = 1;
+  chuu upTo = 20;
+  tame_ni (chuu i=0; i <= upTo; i++) 
+    fact = fact * i;
+    )

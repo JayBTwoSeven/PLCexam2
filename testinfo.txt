@@ -1,0 +1,46 @@
+>>> Tests A and B work according to the grammar.
+
+>>> Test C:
+ 
+ keisatsu(
+	^                                       ! Misspelled lexeme
+  ko size = 278;
+  ^                                       ! Exceeds size. "ko" is 16-bit value
+  chuu 5state = 0;         				
+		^								                      ! Illegal naming convention
+  sentaku (dimension) 
+    joutai 30: 
+      state = 25;
+    choudai 35:
+	^                                       ! Misspelled lexeme
+      state = 20;
+    joutai 40:
+      state = 15;
+    $
+
+  moshimo (state = 15) size = 20$2 @	    ! Changing "chuu" (32-bit) to a nonexistent value with illegal character
+
+  chuu ans = state * size; !
+						   ^			                    ! Illegal char "!"
+)
+
+>>> Test D:
+
+ keikaku (
+
+  tsutsu (a = 13) a = a + 1 $
+          ^                               ! Variable used before initialized
+  ko a;
+  ko fifteen = 15;
+  ko b = fifteen;
+  ko f = b / 0;
+			^                                   ! Runtime error (divided by 0)
+  chuu fail = "13"
+		  ^                                   ! Invalid type
+  tame_ni (chuu i=15; i >= a; i = i+1)
+    ko c = ca+1;
+			^                                   ! Variable "ca" not declared
+    d = c*a;
+    chuu d = 5
+			  ^                                 ! Statement not completed
+)
